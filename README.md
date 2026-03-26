@@ -6,7 +6,7 @@ MonibNasr99 (ME) – Project setup, main logic, integration
 
 Teammate 1 Name - RiskCalculator and RiskLevel
 
-nasir mohamed abdelgafar - RiskResult and Patient
+Nasir mohamed abdelgafar - RiskResult and Patient
 
 Teammate 3 Name - PatientRecord and LogisticRiskCalculator
 
