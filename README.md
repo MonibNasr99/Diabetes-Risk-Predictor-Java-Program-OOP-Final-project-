@@ -10,4 +10,4 @@ Teammate 2 Name - RiskResult and Patient
 
 Teammate 3 Name - PatientRecord and LogisticRiskCalculator
 
-Teammate 4 Name - HealthTip and adding comments in the code.
+Teammate 4 Name - HealthTip
