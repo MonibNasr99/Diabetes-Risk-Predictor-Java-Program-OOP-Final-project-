@@ -8,6 +8,6 @@ Teammate 1 Name - RiskCalculator and RiskLevel
 
 Nasir mohamed abdelgafar - RiskResult and Patient
 
-Teammate 3 Name - PatientRecord and LogisticRiskCalculator
+Saiful - PatientRecord and LogisticRiskCalculator
 
 Teammate 4 Name - HealthTip
