@@ -4,7 +4,7 @@ This project was developed as a group effort for the OOP Final Project. Each mem
 
 MonibNasr99 (ME) – Project setup, main logic, Integration
 
-Teammate 1 Name - RiskCalculator and RiskLevel
+Ahmed mustafa - RiskCalculator and RiskLevel
 
 Nasir mohamed abdelgafar - RiskResult and Patient
 
