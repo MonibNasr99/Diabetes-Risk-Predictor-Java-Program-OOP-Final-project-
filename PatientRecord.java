@@ -59,10 +59,6 @@ public class PatientRecord {
         return new HashMap<>(results);
     }
 
-    public void saveToFile() {
-    // intentionally empty: saving is handled automatically in addRecord()
-    }
-
     // Save records to CSV file
     public void saveToFile(Patient p, RiskResult r) {
 

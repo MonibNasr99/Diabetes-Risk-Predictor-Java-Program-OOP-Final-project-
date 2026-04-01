@@ -312,8 +312,6 @@ public class DiabetesRiskPredictor extends JFrame {
             return;
         }
  
-        records.saveToFile();
- 
         JOptionPane.showMessageDialog(this,
             "Record saved successfully! (" + records.size() + " total)",
             "Saved", JOptionPane.INFORMATION_MESSAGE);

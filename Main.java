@@ -336,8 +336,6 @@ public class Main extends JFrame {
             return;
         }
  
-        records.saveToFile();
- 
         JOptionPane.showMessageDialog(this,
             "Record saved successfully! (" + records.size() + " total)",
             "Saved", JOptionPane.INFORMATION_MESSAGE);
