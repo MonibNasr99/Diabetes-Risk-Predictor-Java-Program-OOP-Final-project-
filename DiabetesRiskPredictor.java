@@ -301,11 +301,19 @@ public class DiabetesRiskPredictor extends JFrame {
     private void saveCurrentRecord() {
         Patient patient = readFields();
         if (patient == null) return;
-
+ 
         RiskResult result = calculator.calculate(patient);
-        records.addRecord(patient, result);
+        boolean saved = records.addRecord(patient, result);
+ 
+        if (!saved) {
+            JOptionPane.showMessageDialog(this,
+                "Duplicate record detected!\nA patient with the same name and age already exists.",
+                "Duplicate", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+ 
         records.saveToFile();
-
+ 
         JOptionPane.showMessageDialog(this,
             "Record saved successfully! (" + records.size() + " total)",
             "Saved", JOptionPane.INFORMATION_MESSAGE);

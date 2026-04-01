@@ -35,15 +35,18 @@ public class PatientRecord {
 }
 
     //  Add a patient and their result 
-    public void addRecord(Patient patient, RiskResult result) {
+    public boolean addRecord(Patient patient, RiskResult result) {
 
     if (patientExists(patient)) {
-        System.out.println("Patient already exists. Skipping duplicate.");
-        return;
+        return false;
     }
 
     patients.add(patient);
     results.put("record_" + patients.size(), result);
+
+    saveToFile(patient, result);
+
+    return true;
 }
 
     //  Get all patients
@@ -56,8 +59,12 @@ public class PatientRecord {
         return new HashMap<>(results);
     }
 
-    // == Save records to CSV file -----------------------------------------------------
     public void saveToFile() {
+    // intentionally empty: saving is handled automatically in addRecord()
+    }
+
+    // Save records to CSV file
+    public void saveToFile(Patient p, RiskResult r) {
 
     File file = new File(FILE_PATH);
     boolean newFile = !file.exists() || file.length() == 0;
@@ -70,39 +77,32 @@ public class PatientRecord {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
-        for (int i = 0; i < patients.size(); i++) {
+        int id = patients.size();
 
-            Patient p = patients.get(i);
-            RiskResult r = results.get("record_" + (i + 1));
-
-            if (r != null) {
-
-                pw.printf(
-                    "%d,%s,%s,%d,%d,%.2f,%.2f,%.2f,%.2f,%.2f,%.4f,%.1f,%s,%s%n",
-                    i + 1,
-                    LocalDateTime.now().format(formatter),
-                    p.getName(),
-                    p.getAge(),
-                    p.getPregnancies(),
-                    p.getGlucose(),
-                    p.getBloodPressure(),
-                    p.getSkinThickness(),
-                    p.getInsulin(),
-                    p.getBmi(),
-                    p.getDiabetesPedigree(),
-                    r.getRiskScore(),
-                    r.getRiskLevel().getLabel(),
-                    "Logistic Risk Model"
-                );
-            }
-        }
+        pw.printf(
+            "%d,%s,%s,%d,%d,%.2f,%.2f,%.2f,%.2f,%.2f,%.4f,%.1f,%s,%s%n",
+            id,
+            LocalDateTime.now().format(formatter),
+            p.getName(),
+            p.getAge(),
+            p.getPregnancies(),
+            p.getGlucose(),
+            p.getBloodPressure(),
+            p.getSkinThickness(),
+            p.getInsulin(),
+            p.getBmi(),
+            p.getDiabetesPedigree(),
+            r.getRiskScore(),
+            r.getRiskLevel().getLabel(),
+            "Logistic Risk Model"
+        );
 
     } catch (IOException e) {
         System.err.println("Error saving records: " + e.getMessage());
     }
 }
 
-    //  Load records from CSV file -----------------------------------------------------
+    //  Load records from CSV file
     public void loadFromFile() {
 
     File file = new File(FILE_PATH);
@@ -144,7 +144,7 @@ public class PatientRecord {
     }
 }
 
-    //  Count of stored records -----------------------------------------------------
+    //  Count of stored records 
     public int size() {
         return patients.size();
     }
